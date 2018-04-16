@@ -21,6 +21,28 @@
 		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' type='text/javascript'></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<style>
+            .header {
+				width: 30%;
+				margin: 50px auto 0px;
+				color: white;
+				background-color: black;
+				text-align: center;
+				border: 1px solid #B0C4DE;
+				border-bottom: none;
+				border-radius: 10px 10px 0px 0px;
+				padding: 20px;
+			}
+			.btn {
+				padding: 10px;
+				font-size: 15px;
+				color: white;
+				margin-top:10px;
+				margin-left: 30px;
+				margin-right: 30px;
+				background-color: black;
+				border: none;
+				border-radius: 5px;
+			}
 				body {
 					background-image: url(csgo.jpeg);
 					background-repeat: no-repeat;
@@ -53,6 +75,43 @@
 				  	}
 				  	.row.content {height:auto;} 
 				}
+            
+                #list {
+  width: 200px;
+}
+ 
+#ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ 
+.li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+.li:last-child {
+  border: none;
+}
+ 
+.li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 200px;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+.li a:hover {
+  text-decoration: none;
+  font-size: 25px;
+}
 		</style>
 	</head>
 	<body>
@@ -81,11 +140,15 @@
 				
 		  	</div>
 		</nav>
+<!--
 		<div class="info-form">
 		<h2 class="text-center" style="color: white">Player Information</h2>
-			<div class="content">
-
-
+        </div>
+-->
+        <div class="header">
+			<h2>Player Information</h2>
+		</div> 
+        <div class="content">
   	<!-- notification message -->
   	<?php if (isset($_SESSION['success'])) : ?>
 				<div class="error success" >
@@ -110,12 +173,16 @@
 					$result=mysqli_query($con,$query);
 					$row = mysqli_fetch_assoc($result);
 				?>
-				<p>Player Name:<strong><?php echo $username; ?></strong></p>
-			 	<p>Team:<strong><?php echo $row['team']; ?></p>
-				<p>Number of wins:<strong><?php echo $row['win']; ?></p>
-				<p>Number of kills:<strong><?php echo $row['kills']; ?></p>
-				<p>Number of deaths:<strong><?php echo $row['deaths']; ?></p>
+                <div id = "list" style = "width: 100%">
+                    <ul id = "ul">
+				<li class = "li"><a href = "#"><p>Player Name:<strong><?php echo $username; ?></strong></p></a></li>
+			 	<li class = "li"><a href = "#"><p>Team:<strong><?php echo $row['team']; ?></p></a></li>
+				<li class = "li"><a href = "#"><p>Number of wins:<strong><?php echo $row['win']; ?></p></a></li>
+				<li class = "li"><a href = "#"><p>Number of kills:<strong><?php echo $row['kills']; ?></p></a></li>
+                <li class = "li"><a href = "#"><p>Number of deaths:<strong><?php echo $row['deaths']; ?></p></a></li>
 				<!--<p>k/d ratio:<strong><?php echo ($row['kils']/$row['deaths']); ?></p> -->
+                        </ul>
+                    </div>
 			 <?php mysqli_close($con); endif ?>
 		</div>
 		</div>  
