@@ -55,7 +55,42 @@
 				  	}
 				  	.row.content {height:auto;} 
 				}
-				
+				#list {
+  width: 200px;
+}
+ 
+#ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ 
+.li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+.li:last-child {
+  border: none;
+}
+ 
+.li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 200px;
+ 
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+.li a:hover {
+  text-decoration: none;
+  font-size: 25px;
+}
 		  </style>
 	</head>
 	<body>
@@ -85,7 +120,10 @@
 		  	</div>
 		</nav>
 		
-		<h2 class="text-center" style="color:white"><?php echo $_SESSION['username']."'s team"?></h2>
+        <div class="header">
+			<h2><?php echo $_SESSION['username']."'s team"?></h2>
+		</div> 
+<!--		<h2 class="text-center" style="color:white"><?php echo $_SESSION['username']."'s team"?></h2>-->
 		<div class="content">
 		<?php if (isset($_SESSION['success'])) : ?>
 				<div class="error success" >
@@ -109,11 +147,15 @@
 					$result=mysqli_query($con,$query);
 					$row = mysqli_fetch_assoc($result);
 			 ?>
-			 	<p><strong><?php echo "NAME:".$row['name']; ?></strong></p>
-			 	<p><strong><?php echo "Team id:".$row['team_id']; ?></strong></p>
-				<p><strong><?php echo "Team name:".$row['team_name']; ?></strong></p>
-				<p><strong><?php echo "Total games:".$row['total_games']; ?></strong></p>
-				<p><strong><?php echo "winrate:".$row['winrate']; ?></strong></p>
+                <div id = "list" style = "width: 100%">
+                    <ul id = "ul">
+                        <li class = "li"><a href = "#"><p><strong><?php echo "NAME:".$row['name']; ?></strong></p></a></li>
+			 	<li class = "li"><a href = "#"><p><strong><?php echo "Team id:".$row['team_id']; ?></strong></p></a></li>
+				<li class = "li"><a href = "#"><p><strong><?php echo "Team name:".$row['team_name']; ?></strong></p></a></li>
+				<li class = "li"><a href = "#"><p><strong><?php echo "Total games:".$row['total_games']; ?></strong></p></a></li>
+				<li class = "li"><a href = "#"><p><strong><?php echo "winrate:".$row['winrate']; ?></strong></p></a></li>
+                    </ul>
+                    </div>
 			 <?php endif ?>
 		</div>  
 	</body>
